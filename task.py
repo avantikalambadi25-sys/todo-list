@@ -1,0 +1,53 @@
+todos = []
+
+while True:
+    print("\n===== TODO APP =====")
+    print("1. Add Task")
+    print("2. View Tasks")
+    print("3. Complete Task")
+    print("4. Delete Task")
+    print("5. Exit")
+
+    choice = input("Enter your choice: ")
+
+    if choice == "1":
+        task = input("Enter your task: ")
+        todos.append({"task": task, "completed": False})
+        print("Task added successfully!")
+
+    elif choice == "2":
+        if len(todos) == 0:
+            print("No tasks available.")
+        else:
+            for i in range(len(todos)):
+                if todos[i]["completed"]:
+                    status = "Completed"
+                else:
+                    status = "Pending"
+
+                print(i + 1, ".", todos[i]["task"], "-", status)
+
+    elif choice == "3":
+        task_no = int(input("Enter task number to complete: "))
+
+        if 1 <= task_no <= len(todos):
+            todos[task_no - 1]["completed"] = True
+            print("Task completed!")
+        else:
+            print("Invalid task number.")
+
+    elif choice == "4":
+        task_no = int(input("Enter task number to delete: "))
+
+        if 1 <= task_no <= len(todos):
+            deleted_task = todos.pop(task_no - 1)
+            print("Deleted:", deleted_task["task"])
+        else:
+            print("Invalid task number.")
+
+    elif choice == "5":
+        print("Thank you for using Todo App!")
+        break
+
+    else:
+        print("Invalid choice. Please try again.")
